@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Is The Red Line F•••ed Today?</title>
+	<style type="text/css" media="screen">
+		body {
+			font-family: Helvetica, Arial, sans-serif;
+			font-size: 1.5em;
+			margin: 0;
+			padding: 0;
+			margin-top: 5vh;
+		}
+		#sign {
+			text-align: center;
+			max-width: 75vw;
+			min-width: 50vw;
+			margin: 0 auto;
+			border: 5px solid black;
+		}
+		#sign #top, #sign #bottom {
+			padding: 0.5em;		
+			text-transform: uppercase;		
+			font-size: 2em;				
+		}
+		#sign #top {
+			color: white;
+			letter-spacing: 2pt;
+			background: #D50000;
+		}
+		#alerts {
+			max-width: 75vw;
+			margin: 0 auto;
+			text-transform: uppercase;
+			font-size: 0.75em;
+			color: #444;
+		}
+		#alerts li {
+			line-height: 1.2em;
+			margin-bottom: 1em;
+			text-transform: none;
+		}
+		footer {
+			text-transform: uppercase;
+			font-size: 0.5em;
+			width: 100%;
+			color: #ccc;
+			text-align: center;
+			margin-top: 4em;			
+		}
+		footer p {
+			margin: 0;
+		}
+		a { 
+			color: #D6A8AE;
+			text-decoration: none;
+		}
+	</style>
+
+	
+</head>
+<body>
+	<div id="sign">
+		<div id="top">
+			Is The <strong>Red Line</strong> F&bull;&bull;&bull;ed?
+		</div>
+		<div id="bottom">	
+			{% if data.status == 2 %}
+			Yep
+			{% elif data.status == 1 %}
+			Not Really
+			{% elif data.status == 0 %}
+			Nope
+			{% else %}
+			I don't know, but this site is
+			{% endif %}
+		</div>	
+	</div>	
+	{% if data.status > 0 %}
+	<div id="alerts">
+		{% if data.status == 2 %}
+		<h1>What's going on?</h1>
+		{% endif %}
+		{% if data.status == 1 %}
+		<h1>...but watch out for these alerts</h1>
+		{% endif %}
+		<ul>
+			{% for a in data.alerts %}
+			<li>{{a.text}}</li>
+			{% endfor %}
+		</ul>
+	</div>	
+	{% endif %}
+	<footer>
+		<p>Not affilated with the MBTA &bull; Data used subject to the <a href="http://www.eot.state.ma.us/developers/">MassDOT Developers License Agreement</a></p>
+		<p>Data updates once a minute &bull; Check out the actual <a href="https://www.mbta.com/alerts/subway#alerts-Red">Red Line Alerts</a> &bull; <a href="http://github.com/nhfruchter">Say Hello</a></p>
+	</footer>	
+</body>
+</html>
