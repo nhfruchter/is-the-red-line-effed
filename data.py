@@ -53,7 +53,7 @@ def names(route):
 def colors(route):
     route = str(route).lower()
         
-    if "green" in route:
+    if route.startswith("green-"):
         return colornames['green'] or "#000"
     elif route.startswith("cr"):
         return colornames['cr']
